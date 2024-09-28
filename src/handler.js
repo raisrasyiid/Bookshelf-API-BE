@@ -79,6 +79,7 @@ const addBookHandler = (request, h) => {
     return response;
 };
 
+//getAllBookHandler
 const getBooksHandler = (request, h) => {
     return h.response({
         status: 'success',
@@ -87,5 +88,7 @@ const getBooksHandler = (request, h) => {
         },
     }).code(200);
 };
+
+//getAllBookByIdHandler
 
 module.exports = { addBookHandler, getBooksHandler };
