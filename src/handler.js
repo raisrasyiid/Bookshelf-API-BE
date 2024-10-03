@@ -81,13 +81,21 @@ const addBookHandler = (request, h) => {
 
 //getAllBookHandler
 const getAllBooksHandler = (request, h) => {
+    const filteredBooks = books.map(book => ({
+        id: book.id,
+        name: book.name,
+        publisher: book.publisher
+    }));
+
     return h.response({
         status: 'success',
+        message: "Berhasil mendapatkan data semua buku",
         data: {
-            books,
+            books: filteredBooks
         },
     }).code(200);
 };
+
 
 //getBookByIdHandler
 const getBookByIdHandler = (request, h) => {
@@ -137,7 +145,7 @@ const editBookByIdHandler = (request, h) => {
             status: 'fail',
             message: 'Gagal memperbarui buku. Mohon isi nam buku'
         });
-        response.code(404);
+        response.code(400);
         return response;
     }
 
@@ -147,7 +155,7 @@ const editBookByIdHandler = (request, h) => {
             statusbar: 'fail',
             message: 'Gagal memperbarui buku. Tidak boleh lebih besar dari PageCount'
         });
-        response.code(404);
+        response.code(400);
         return response;
     }
 
